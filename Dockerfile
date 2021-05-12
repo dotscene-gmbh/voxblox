@@ -3,13 +3,14 @@
 # 
 # In order to run rviz from the container install nvidia-docker2 (https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#supported-platforms)
 # Build: sudo docker build --tag voxblox .
-# Run: sudo docker run -it -v /path/to/my/data:/data --rm --privileged --net=host --env=NVIDIA_VISIBLE_DEVICES=all --env=NVIDIA_DRIVER_CAPABILITIES=all --env=DISPLAY --env=QT_X11_NO_MITSHM=1 -v /tmp/.X11-unix:/tmp/.X11-unix --gpus 1 voxblox /bin/bash
+# Run: xhost +local:; sudo docker run -it -v /path/to/my/data:/data --rm --privileged --net=host --env=NVIDIA_VISIBLE_DEVICES=all --env=NVIDIA_DRIVER_CAPABILITIES=all --env=DISPLAY --env=QT_X11_NO_MITSHM=1 -v /tmp/.X11-unix:/tmp/.X11-unix --gpus 1 voxblox /bin/bash
 # In the container:
 # 1. Run $ source devel/setup.bash; tmux;
 # Run the following in different terminals (make new terminal with ctrl+b,c switch between terminals with ctrl+b,n)
 # 2. roscore
-# 3. roslaunch voxblox_ros basement_dataset.launch bag_file:=/data/basement_dataset.bag
+# 3. roslaunch voxblox_ros custom_dataset.launch bag_file:=/data/test.bag
 # 4. rviz (add voxblox mesh and choose tf frame "world")
+# 5. When done dump mesh to ply by calling "rosservice call /voxblox_node/generate_mesh"
 
 FROM ros:melodic-perception
 
