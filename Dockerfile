@@ -39,7 +39,7 @@ RUN mkdir -p /home/voxblox_user/catkin_ws/src && \
 #COPY . /home/voxblox_user/catkin_ws/src/voxblox/
 
 WORKDIR /home/voxblox_user/catkin_ws/src/
-RUN git clone https://github.com/johannes-graeter/voxblox.git
+RUN git clone https://github.com/johannes-graeter/voxblox.git && \
     wstool init . ./voxblox/voxblox_https.rosinstall && \
     wstool update
 
